@@ -1,0 +1,33 @@
+<?php
+use app\assets\AppAsset;
+use app\assets\GbcAdminAsset;
+
+$action_list = [
+    'user/login',
+    'user/request-password-reset',
+    'user/reset-password'
+];
+
+if (in_array(Yii::$app->controller->id . '/' . Yii::$app->controller->action->id, $action_list)) {
+    echo $this->render(
+        'main-login',
+        ['content' => $content]
+    );
+}else{
+    $bootstrp_list = [
+        'default/index',
+        'tools/ico'
+    ];
+    //只需要在首页的时候加载某些资源
+    if(in_array(Yii::$app->controller->id . '/' . Yii::$app->controller->action->id, $bootstrp_list)){
+        GbcAdminAsset::register($this);
+        GbcAdminAsset::addScript($this, "@web/resources/js/index.js");
+    }else{
+        //加载bootstrp资源
+        AppAsset::register($this);
+    }
+    echo $this->render(
+        'main-index',
+        ['content' => $content]
+    );
+}

@@ -1,0 +1,86 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: xiaogang
+ * Date: 2019/4/8
+ * Time: 0:51
+ */
+
+namespace app\modules\admin\controllers;
+
+use Yii;
+use yii\web\Controller;
+use app\modules\admin\models\AdminUser;
+use app\modules\admin\models\LoginForm;
+class PublicController extends Controller
+{
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'minLength' => 4,
+                'maxLength' => 4
+            ],
+        ];
+    }
+    /**
+     * 登陆
+     * Login action.
+     * @return string
+     */
+    public function actionLogin()
+    {
+        if (!Yii::$app->admin->isGuest) {
+            return $this->redirect(['default/index']);
+        }
+        $this->layout = false;
+        $model = new LoginForm();
+        $model->loginCaptchaRequired();
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            //更新登陆时间、IP
+            $adminid=YII::$app->admin->identity->id;
+            $result = AdminUser::find()->where(['id'=>$adminid])->one();
+            $result->login_time = time();
+            $result->login_ip = ip2long(Yii::$app->request->userIP);
+            $result->save();
+            //登录成功跳转
+            return $this->redirect(['default/index']);
+        }
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+    /**
+     * 退出登陆
+     * Logout action.
+     * @return string
+     */
+    public function actionLogout()
+    {
+        Yii::$app->admin->logout();
+
+        return $this->redirect(['public/login']);
+    }
+
+    public function actionAdmindata(){
+        //$this->layout = false;
+        $model = new AdminUser();
+        return $this->render('admindata',[
+            'model'=>$model,
+            ]);
+    }
+    public function actionCs(){
+        $cache = Yii::$app->cache;
+        $key = '3bcd';
+        $data = $cache->get($key);
+        if ($data === false) {
+            // $data 在缓存中没有找到，则重新计算它的值
+            // 将 $data 存放到缓存供下次使用
+            $data = 'aaa';
+            $cache->set($key, $data);
+        }
+        echo $data;
+    }
+}
