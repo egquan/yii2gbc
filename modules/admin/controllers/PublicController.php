@@ -39,12 +39,6 @@ class PublicController extends Controller
         $model = new LoginForm();
         $model->loginCaptchaRequired();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            //更新登陆时间、IP
-            $adminid=YII::$app->admin->identity->id;
-            $result = AdminUser::find()->where(['id'=>$adminid])->one();
-            $result->login_time = time();
-            $result->login_ip = ip2long(Yii::$app->request->userIP);
-            $result->save();
             //登录成功跳转
             return $this->redirect(['default/index']);
         }

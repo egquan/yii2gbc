@@ -53,7 +53,14 @@ $config = [
             'enableAutoLogin' => true,
             'loginUrl' =>['/admin/public/login'],
             'identityCookie' => ['name' => '__admin_identity', 'httpOnly' => true],
-            'idParam' => '_admin'
+            'idParam' => '_admin',
+            //触发登陆事件
+            'on beforeLogin' => function($event) {
+                $user = $event->identity; //这里的就是User Model的实例
+                $user->login_time = time();
+                $user->login_ip = ip2long(Yii::$app->request->userIP);
+                $user->save();
+            },
         ],
         'authManager'=>[
             'class' => 'yii\rbac\DbManager', //使用数据库RBAC

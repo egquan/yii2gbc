@@ -2,8 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
-use yii;
-use yii\web\Controller;
+use Yii;
 /**
  * Default controller for the `admin` module
  */
@@ -15,16 +14,10 @@ class DefaultController extends CommonController
      */
     public function actionIndex()
     {
+        if(Yii::$app->admin->isGuest){
+            return $this->redirect(['/admin/public/login']);
+        }
         $data = '';
         return $this->render('index',['data' => $data]);
-    }
-    public function actionAdminSing()
-    {
-        $items = [
-            'name' => 'admin/default/admin-sing',
-            'description' => '账号设置',
-            'type' => '2'
-        ];
-        print_r($items);
     }
 }

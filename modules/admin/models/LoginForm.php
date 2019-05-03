@@ -10,7 +10,6 @@ namespace app\modules\admin\models;
 
 use Yii;
 use yii\base\Model;
-//use app\modules\admin\models\AdminUser;
 
 /**
  * LoginForm is the model behind the login form.

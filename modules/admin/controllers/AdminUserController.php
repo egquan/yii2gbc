@@ -11,7 +11,7 @@ use yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use app\modules\admin\models\AdminUser;
+use app\modules\admin\models\AdminUserUpdata;
 class AdminUserController extends Controller
 {
     public function actionIndex()
@@ -30,36 +30,24 @@ class AdminUserController extends Controller
     public function actionUpdateSelf($id)
     {
         $model = $this->findModel($id);
-        $post_data = Yii::$app->request->post();
-
+        //$post_data = Yii::$app->request->post();
         if($id!=Yii::$app->admin->identity->id){
             throw new ForbiddenHttpException('你没有权限修改');
         }
-        if ($model->load($post_data) && $model->validate()) {
-            if($post_data['AdminUser']['password']){
-                $model->password=Yii::$app->security->generatePasswordHash($post_data['AdminUser']['password']);
-            }
-            $model->password_reset_token = null;
-            $model->updated_at = time();
-            $model->email = $post_data['AdminUser']['email'];
-            $model->head_pic = $post_data['AdminUser']['head_pic'];
-            $model->nickname = $post_data['AdminUser']['nickname'];
-            $model->login_ip = ip2long(Yii::$app->request->userIP);
-            if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            return $this->render('updateself', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->AdminUserUpdata($id,Yii::$app->request->post())) {
+            //登录成功跳转
+            return $this->redirect(['view', 'id' => $model->id]);
         }
+        return $this->render('updateself', [
+            'model' => $model,
+        ]);
     }
     /**
      * 加载模型
     */
     protected function findModel($id)
     {
-        if (($model = AdminUser::findOne($id)) !== null) {
+        if (($model = AdminUserUpdata::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
