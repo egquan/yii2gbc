@@ -30,17 +30,25 @@ class AdminUserController extends Controller
     public function actionUpdateSelf($id)
     {
         $model = $this->findModel($id);
-        //$post_data = Yii::$app->request->post();
+        $post_data = Yii::$app->request->post();
+
         if($id!=Yii::$app->admin->identity->id){
             throw new ForbiddenHttpException('你没有权限修改');
         }
-        if ($model->Updates(Yii::$app->request->post(), $id)) {
-            //登录成功跳转
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load($post_data) && $model->validate()) {
+            if ($post_data['AdminUser']['password']) {
+                $model->password = Yii::$app->security->generatePasswordHash($post_data['AdminUser']['password']);
+            }
+            $model->password_reset_token = null;
+            $model->updated_at = time();
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            return $this->render('updateself', [
+                'model' => $model,
+            ]);
         }
-        return $this->render('updateself', [
-            'model' => $model,
-        ]);
     }
     /**
      * 加载模型

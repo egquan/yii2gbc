@@ -46,11 +46,11 @@ class AdminUser extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-            [['email', 'nickname', 'head_pic'], 'required', 'message' => '{attribute}不能为空', 'on' => 'updatas'],
-            ['email', 'email', 'message' => '邮箱格式不正确', 'on' => 'updates'],
-            ['email', 'unique', 'message' => '邮箱格已被占用', 'on' => 'updates'],
-            ['nickname', 'string', 'max' => 10, 'message' => '{attribute}不能大于10个字符', 'on' => 'updates'],
-            ['head_pic', 'url', 'message' => '{attribute}必须为URL形式', 'on' => 'updates'],
+            [['email', 'nickname', 'head_pic'], 'required', 'message' => '{attribute}不能为空'],
+            ['email', 'email', 'message' => '邮箱格式不正确'],
+            ['email', 'unique', 'message' => '邮箱格已被占用'],
+            ['nickname', 'string', 'max' => 10, 'message' => '{attribute}不能大于10个字符'],
+            ['head_pic', 'url', 'message' => '{attribute}必须为URL形式'],
         ];
     }
 
@@ -76,6 +76,7 @@ class AdminUser extends ActiveRecord implements IdentityInterface
             'rememberMe' => '记住登陆',
             'head_pic' => '头像',
             'nickname' => '昵称',
+            'updated_at' => '最后修改'
         ];
     }
     /**

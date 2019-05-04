@@ -23,8 +23,8 @@ GbcAdminAsset::register($this);
                 ],
             ],
             'email:email',
-            'created_at:date',
-            'status',
+            'updated_at:datetime',
+            'login_ip',
         ],
         'template' => '<tr><th width="90px;">{label}</th><td>{value}</td></tr>',
     ])
