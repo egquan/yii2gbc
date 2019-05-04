@@ -18,8 +18,10 @@ $this->registerJs($this->render('js/upload.js'));
 	<?= Html::img($model->head_pic, ['width'=>'50','height'=>'50','class'=>'layui-circle userinfo_head_pic'])?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true,'class'=>'layui-input']) ?>
-	
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true,'value'=>'','class'=>'layui-input search_input']) ?>
+
+    <?= $form->field($modelFrom, 'password')->passwordInput(['maxlength' => true, 'value' => '', 'class' => 'layui-input search_input']) ?>
+
+    <?= $form->field($model, 'newpassword')->passwordInput(['maxlength' => true, 'value' => '', 'class' => 'layui-input search_input']) ?>
 	
     <div align='right'>
         <?= Html::submitButton($model->isNewRecord ? '添加' : '修改', ['class' => $model->isNewRecord ? 'layui-btn' : 'layui-btn layui-btn-normal']) ?>

@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use app\modules\admin\models\AdminUser;
+use app\modules\admin\models\LoginForm;
 class AdminUserController extends Controller
 {
     public function actionIndex()
@@ -30,14 +31,15 @@ class AdminUserController extends Controller
     public function actionUpdateSelf($id)
     {
         $model = $this->findModel($id);
+        $modelFrom = new LoginForm();
         $post_data = Yii::$app->request->post();
 
         if($id!=Yii::$app->admin->identity->id){
             throw new ForbiddenHttpException('你没有权限修改');
         }
         if ($model->load($post_data) && $model->validate()) {
-            if ($post_data['AdminUser']['password']) {
-                $model->password = Yii::$app->security->generatePasswordHash($post_data['AdminUser']['password']);
+            if ($post_data['AdminUser']['newpassword']) {
+                $model->password = Yii::$app->security->generatePasswordHash($post_data['AdminUser']['newpassword']);
             }
             $model->password_reset_token = null;
             $model->updated_at = time();
@@ -47,6 +49,7 @@ class AdminUserController extends Controller
         } else {
             return $this->render('updateself', [
                 'model' => $model,
+                'modelFrom' => $modelFrom,
             ]);
         }
     }

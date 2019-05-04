@@ -24,10 +24,12 @@ GbcAdminAsset::register($this);
             ],
             'email:email',
             'updated_at:datetime',
-            'login_ip',
+            [
+                'attribute' => 'login_ip',
+                'value' => long2ip($model->login_ip),
+            ]
         ],
         'template' => '<tr><th width="90px;">{label}</th><td>{value}</td></tr>',
     ])
     ?>
-
 </div>

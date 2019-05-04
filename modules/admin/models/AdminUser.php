@@ -64,6 +64,7 @@ class AdminUser extends ActiveRecord implements IdentityInterface
             'username' => '管理员账号',
             'auth_key' => 'Auth Key',
             'password' => '管理员密码',
+            'newpassword' => '新密码',
             'password_reset_token' => 'Password Reset Token',
             'email' => '邮箱',
             'status' => '账号状态',
@@ -226,26 +227,5 @@ class AdminUser extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
-    }
-
-    /**
-     * 更新资料
-     */
-    public function Updates($data, $id)
-    {
-        $this->scenario = 'updates';
-        if ($this->load($data) && $this->validate()) {
-            $user = $this->findOne($id);
-            $user->password = Yii::$app->getSecurity()->generatePasswordHash('admin888');
-            $user->email = $this->email;
-            $user->nickname = $this->nickname;
-            $user->updated_at = time();
-            $user->head_pic = $this->head_pic;
-            if ($user->save(false)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
     }
 }
