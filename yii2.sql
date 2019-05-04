@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 03/05/2019 19:59:50
+ Date: 04/05/2019 15:37:22
 */
 
 SET NAMES utf8mb4;
@@ -29,14 +29,14 @@ CREATE TABLE `gbc_admin_user`  (
   `password_reset_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '管理员邮箱',
   `status` smallint(6) UNSIGNED NOT NULL DEFAULT 10 COMMENT '账号状态',
-  `updated_at` int(10) UNSIGNED NOT NULL COMMENT '帐号创建时间',
+  `updated_at` int(10) UNSIGNED NOT NULL COMMENT '资料更新时间',
   `login_time` int(10) UNSIGNED NOT NULL COMMENT '账号修改时间',
   `login_ip` int(10) UNSIGNED NOT NULL COMMENT '最后登陆IP',
   `verification_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `role` smallint(6) UNSIGNED NULL DEFAULT 10,
-  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `nickname` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `head_pic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
-  `created_at` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `created_at` int(10) NULL DEFAULT NULL COMMENT '帐号创建时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE,
   UNIQUE INDEX `email`(`email`) USING BTREE,
@@ -46,7 +46,7 @@ CREATE TABLE `gbc_admin_user`  (
 -- ----------------------------
 -- Records of gbc_admin_user
 -- ----------------------------
-INSERT INTO `gbc_admin_user` VALUES (1, 'admin', '$2y$13$jWy0RiZJA2k1Ni3bkHJ6deL6z4FcbzHYQzj1sdgRhx3BFI44MlNdy', 'aaa', NULL, 'egquan2@163.com', 10, 1556288324, 1556291868, 2130706433, '215151', 10, '春风a', 'https://resources.alilinet.com/20180323/201803230920589741.png', NULL);
+INSERT INTO `gbc_admin_user` VALUES (1, 'admin', '$2y$13$ofWJKYesGl94/37RtSGYhOlvsVWeugS3ocoTlmEbcxvu2DAzwTvyy', 'aaa', NULL, 'egquan@163.com', 10, 1556954847, 1556939992, 2130706433, '215151', 10, '春风', 'https://resources.alilinet.com/20180323/201803230920589741.png', NULL);
 INSERT INTO `gbc_admin_user` VALUES (4, 'admin888', '7fef6171469e80d32c0559f88b377245', NULL, NULL, 'egquan1@163.com', 10, 1926547, 1554875263, 2130706433, NULL, 10, NULL, NULL, NULL);
 
 -- ----------------------------
