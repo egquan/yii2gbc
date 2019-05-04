@@ -11,7 +11,7 @@ use yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use app\modules\admin\models\AdminUserUpdata;
+use app\modules\admin\models\AdminUser;
 class AdminUserController extends Controller
 {
     public function actionIndex()
@@ -34,7 +34,7 @@ class AdminUserController extends Controller
         if($id!=Yii::$app->admin->identity->id){
             throw new ForbiddenHttpException('你没有权限修改');
         }
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->AdminUserUpdata($id,Yii::$app->request->post())) {
+        if ($model->Updates(Yii::$app->request->post(), $id)) {
             //登录成功跳转
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -47,7 +47,7 @@ class AdminUserController extends Controller
     */
     protected function findModel($id)
     {
-        if (($model = AdminUserUpdata::findOne($id)) !== null) {
+        if (($model = AdminUser::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

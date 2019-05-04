@@ -15,8 +15,11 @@ use yii\web\IdentityInterface;
  * @property string $password 管理员密码
  * @property string $password_reset_token
  * @property string $email 管理员邮箱
+ * @property string $nickname 昵称
+ * @property string $head_pic 头像
  * @property int $status 账号状态
  * @property int $created_time 帐号创建时间
+ * @property int $updated_at 资料更新时间
  * @property int $login_time 账号修改时间
  * @property int $login_ip 最后登陆IP
  * @property string $verification_token
@@ -43,13 +46,12 @@ class AdminUser extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['email', 'nickname', 'head_pic'], 'required', 'message' => '{attribute}不能为空', 'on' => 'updatas'],
+            ['email', 'email', 'message' => '邮箱格式不正确', 'on' => 'updates'],
+            ['email', 'unique', 'message' => '邮箱格已被占用', 'on' => 'updates'],
+            ['nickname', 'string', 'max' => 10, 'message' => '{attribute}不能大于10个字符', 'on' => 'updates'],
+            ['head_pic', 'url', 'message' => '{attribute}必须为URL形式', 'on' => 'updates'],
         ];
-/*        return [
-           [['username', 'password'], 'required','message' => '{attribute}不能为空','on' => ['login','loginError']],
-            ['password','validatePass','on' => ['login','loginError']],
-            ['rememberMe', 'boolean', 'on' => ['login','loginError']],
-            ['verifyCode','captcha','captchaAction'=>'admin/public/captcha','message'=>'{attribute}错误','on' => 'loginError'],
-        ];*/
     }
 
     /**
@@ -223,5 +225,26 @@ class AdminUser extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    /**
+     * 更新资料
+     */
+    public function Updates($data, $id)
+    {
+        $this->scenario = 'updates';
+        if ($this->load($data) && $this->validate()) {
+            $user = $this->findOne($id);
+            $user->password = Yii::$app->getSecurity()->generatePasswordHash('admin888');
+            $user->email = $this->email;
+            $user->nickname = $this->nickname;
+            $user->updated_at = time();
+            $user->head_pic = $this->head_pic;
+            if ($user->save(false)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

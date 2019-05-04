@@ -8,15 +8,33 @@
  */
 namespace app\modules\admin\models;
 
-use yii\base\Model;
-class AdminUserUpdata extends AdminUser
+use yii\db\ActiveRecord;
+
+class AdminUserUpdata extends ActiveRecord
 {
-    public function AdminUserUpdata($id,$data) {
-        $user = AdminUserUpdata::find()->where(['id'=>$id])->one(); //获取name等于test的模型
-        $user->email = $data['AdminUserUpdata']['email']; //修改age属性值
-        if($user->save(false)){
-            return true;
-        }
-        return false;
+    public $username;
+    public $password;
+    public $email;
+    public $nickname;
+    public $head_pic;
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => '管理员账号',
+            'password' => '管理员密码',
+            'email' => '邮箱',
+            'nickname' => '昵称',
+            'head_pic' => '头像'
+        ];
+    }
+
+    public function AdminUserUpdata()
+    {
+        /*            $id = '1';
+                    $user = AdminUser::find()->where(['id'=>$id])->one();
+                    $user->email = $this->email; //修改age属性值
+                    $user->save(false);*/
+        return $this->email;
     }
 }
