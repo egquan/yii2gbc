@@ -10,10 +10,13 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use app\modules\admin\models\AdminUser;
 use app\modules\admin\models\ChangeForm;
+use app\modules\admin\models\UploadForm;
+use yii\web\Response;
 class AdminUserController extends Controller
 {
     public function actionIndex()
@@ -93,5 +96,34 @@ class AdminUserController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+        $this->enableCsrfValidation = false;
+        if (Yii::$app->request->isPost) {
+            $file = UploadedFile::getInstance($model, 'file');
+            $path = "uploads/" . date("YmdH", time()) . "/";
+            if ($file && $model->validate()) {
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $path = $path . time() . '.' . $file->getExtension();
+                $file->saveAs($path);
+                $path = 'http://127.0.0.1/' . $path;
+                Yii::$app->session->setFlash('success', $path);
+            }
+        }
+        $json = [
+            'code' => '200',
+            'msg' => '0',
+            'data' => [
+                'src' => 'http://127.0.0.1/',
+            ],
+        ];
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $json;
+        //return $this->render('upload', ['model' => $model]);
     }
 }

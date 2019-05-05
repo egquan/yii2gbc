@@ -17,3 +17,4 @@ $this->registerJs($this->render('js/upload.js'));
     </div>
     <?php ActiveForm::end(); ?>
 </div>
+
