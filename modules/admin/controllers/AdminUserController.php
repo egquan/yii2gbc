@@ -99,30 +99,13 @@ class AdminUserController extends Controller
 
     public function actionUpload()
     {
-        $model = new UploadForm();
         $this->enableCsrfValidation = false;
         if (Yii::$app->request->isPost) {
-            $file = UploadedFile::getInstance($model, 'file');
-            $path = "uploads/" . date("YmdH", time()) . "/";
-            if ($file && $model->validate()) {
-                if (!file_exists($path)) {
-                    mkdir($path, 0777, true);
-                }
-                $path = $path . time() . '.' . $file->getExtension();
-                $file->saveAs($path);
-                $path = 'http://127.0.0.1/' . $path;
-                Yii::$app->session->setFlash('success', $path);
-            }
+            $uploadFile = new uploadFile();
+            $post = $_FILES['UploadForm'];
+            $file = $uploadFile::getInstancesByName($post['name']);
+            return 'ok';
         }
-        $json = [
-            'code' => '200',
-            'msg' => '0',
-            'data' => [
-                'src' => 'http://127.0.0.1/',
-            ],
-        ];
-        /*        Yii::$app->response->format = Response::FORMAT_JSON;
-                return $json;*/
-        return $this->render('upload', ['model' => $model]);
+        return 'NO';
     }
 }
