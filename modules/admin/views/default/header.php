@@ -31,6 +31,10 @@ use yii\helpers\Url;
                     <dl class="layui-nav-child top-50">
                         <dd><a href="javascript:;" class="changeSkin"><i class="iconfont icon-yifu userMenu"></i><cite>换肤</cite></a></dd>
                         <dd><a href="<?= Url::to(['admin-user/update-self','id'=>Yii::$app->admin->identity->id])?>" class="userInfo"><i class="iconfont icon-wo userMenu" data-icon="icon-wo"></i><cite>资料</cite></a></dd>
+                        <dd>
+                            <a href="<?= Url::to(['admin-user/change-password', 'id' => Yii::$app->admin->identity->id]) ?>"
+                               class="userpass"><i class="layui-icon layui-icon-password userMenu"
+                                                   data-icon="layui-icon-password"></i><cite>更改密码</cite></a></dd>
                         <dd><a href="<?= Url::to(['public/logout'])?>" class="signOut yii2-post-logout"><i class="iconfont icon-logout userMenu"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>

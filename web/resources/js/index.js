@@ -229,7 +229,7 @@ layui.config({
             id: 'LAY_layuipro',
             btn: ['立即查看'],
             moveType: 1,
-			content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>亲爱的，欢迎使用本系统，新增在线音乐功能。<div style="text-align:center;margin-top: -25px;"><br><a target="_blank" style="color:blue;" href="http://www.alilinet.com">前台博客地址</a><br><a target="_blank" style="color:blue;" href="https://github.com/changchang700/yii2cms">后台开源地址</a><br><a target="_blank" style="color:blue;" href="http://qm.qq.com/cgi-bin/qm/qr?k=N9JkOSj4KvWRtb_7fa_YBAYrjziuBSTm">加入群群嗨皮</a></div></p></div>',
+            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>GBC音乐管理程序正在开发中，加油！<div style="text-align:center;margin-top: -25px;"><br><a target="_blank" style="color:blue;" href="http://www.chunblog.com">博客地址</a></div></p></div>',
             success: function (layero) {
                 var btn = layero.find('.layui-layer-btn');
                 btn.css('text-align', 'center');
@@ -359,7 +359,18 @@ layui.config({
     $(".userInfo").click(function () {
         var href = $(this).attr("href");
         layui.layer.open({
-            title: "修改信息",
+            title: "修改资料",
+            type: 2,
+            area: ['430px', '520px'], //宽高
+            content: [href, "no"]
+        });
+        //直接阻止A连接跳转
+        return false;
+    });
+    $(".userpass").click(function () {
+        var href = $(this).attr("href");
+        layui.layer.open({
+            title: "修改密码",
             type: 2,
             area: ['430px', '520px'], //宽高
             content: [href, "no"]

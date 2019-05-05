@@ -7,7 +7,6 @@ $this->registerJs($this->render('js/create.js'));
 
     <?= $this->render('_form', [
         'model' => $model,
-        'modelFrom' => $modelFrom,
     ]) ?>
 
 </div>

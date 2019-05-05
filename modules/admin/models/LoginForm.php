@@ -20,7 +20,7 @@ class LoginForm extends Model
     public $rememberMe = false;
     public $verifyCode;
     public $attempts = 3;
-    private $_admin = false;
+    private $_admin = null;
 
 
     /**
@@ -95,7 +95,7 @@ class LoginForm extends Model
      */
     public function getUser()
     {
-        if ($this->_admin === false) {
+        if ($this->_admin === null) {
             $this->_admin = AdminUser::findByUsername($this->username);
         }
         return $this->_admin;

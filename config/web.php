@@ -43,7 +43,7 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
             'loginUrl' =>['/site/login'],
-            'identityCookie' => ['name' => '__user_identity', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_user_identity', 'httpOnly' => true],
             'idParam' => '_user'
         ],
         //后台登陆
@@ -52,7 +52,7 @@ $config = [
             'identityClass' => 'app\modules\admin\models\AdminUser',
             'enableAutoLogin' => true,
             'loginUrl' =>['/admin/public/login'],
-            'identityCookie' => ['name' => '__admin_identity', 'httpOnly' => true],
+            'identityCookie' => ['name' => '_admin_identity', 'httpOnly' => true],
             'idParam' => '_admin',
             //触发登陆事件
             'on beforeLogin' => function($event) {
