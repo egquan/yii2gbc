@@ -52,7 +52,6 @@ class AdminUserController extends Controller
         }
         return false;
     }
-
     /**
      * 修改密码
      */
@@ -122,8 +121,8 @@ class AdminUserController extends Controller
                 'src' => 'http://127.0.0.1/',
             ],
         ];
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return $json;
-        //return $this->render('upload', ['model' => $model]);
+        /*        Yii::$app->response->format = Response::FORMAT_JSON;
+                return $json;*/
+        return $this->render('upload', ['model' => $model]);
     }
 }

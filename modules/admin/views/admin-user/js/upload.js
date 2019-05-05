@@ -5,6 +5,11 @@ layui.use(['upload','layer'], function(){
         elem: '#test3',
         url: "<?=yii\helpers\Url::to(['/admin/admin-user/upload'])?>",
         field: 'UploadForm',
+        data: {
+            UploadForm: function () {
+                return $('.upload_input').val();
+            }
+        },
         done: function(res){
             if(res.code==200){
                 //修改上传成功后需要修改的地方
