@@ -58,14 +58,12 @@ layui.config({
                 if (window.sessionStorage.getItem("skinValue")) {
                     $(".skins_box input[value=" + window.sessionStorage.getItem("skinValue") + "]").attr("checked", "checked");
                 }
-                ;
                 if ($(".skins_box input[value=自定义]").attr("checked")) {
                     $(".skinCustom").css("visibility", "inherit");
                     $(".topColor").val(skin.split(',')[0]);
                     $(".leftColor").val(skin.split(',')[1]);
                     $(".menuColor").val(skin.split(',')[2]);
                 }
-                ;
                 form.render();
                 $(".skins_box").removeClass("layui-hide");
                 $(".skins_box .layui-form-radio").on("click", function () {
