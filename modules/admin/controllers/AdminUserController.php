@@ -104,21 +104,31 @@ class AdminUserController extends Controller
             $post = $_FILES['Upload'];
             $filenames = explode(".", $post['name']);
             $tempFile = $post['tmp_name'];
-            $path = 'uploads/' . time();
-            $targetFile = $path . "." . $filenames[count($filenames) - 1]; //图片完整路徑
+            $path = 'uploads/';
+            if (!is_dir($path)) {
+                mkdir($path, '0777', true);
+            }
+            $targetFile = $path . time() . "." . $filenames[count($filenames) - 1]; //图片完整路徑
             // Validate the file type
             $fileTypes = array('jpg', 'jpeg', 'png', 'gif'); // File extensions
             $fileParts = pathinfo($post['name']);
             if (in_array($fileParts['extension'], $fileTypes)) {
                 $error = '0';
                 move_uploaded_file($tempFile, $targetFile);
-                $json = ['code' => $error, 'data' => ['src' => 'http://127.0.0.1/' . $targetFile, 'size' => $post['size'],],];
                 Yii::$app->response->format = Response::FORMAT_JSON;
-                return $json;
+                return Yii::$app->response->data = [
+                    'code' => $error,
+                    'data' =>
+                        [
+                            'src' => 'http://127.0.0.1/' . $targetFile,
+                            'size' => $post['size'],
+                        ],
+                ];
             }
         }
-        $json = ['code' => '1',];
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return $json;
+        return Yii::$app->response->data = [
+            'code' => '1',
+        ];
     }
 }
