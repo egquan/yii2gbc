@@ -64,10 +64,10 @@ $config = [
         ],
         'authManager'=>[
             'class' => 'yii\rbac\DbManager', //使用数据库RBAC
-            'itemTable' => '{{%auth_item}}', //权限列表
-            'assignmentTable' => '{{%auth_assignment}}', //权限分配表
-            'itemChildTable' => '{{%auth_item_child}}', //权限父子关联表
-            'ruleTable' => '{{%auth_rule}}'
+            /*            'itemTable' => '{{%auth_item}}', //权限列表
+                        'assignmentTable' => '{{%auth_assignment}}', //权限分配表
+                        'itemChildTable' => '{{%auth_item_child}}', //权限父子关联表
+                        'ruleTable' => '{{%auth_rule}}'*/
             //'defaultRoles' => ['user'], //默认角色
 
         ],

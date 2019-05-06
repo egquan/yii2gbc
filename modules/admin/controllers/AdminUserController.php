@@ -120,7 +120,7 @@ class AdminUserController extends Controller
                     'code' => $error,
                     'data' =>
                         [
-                            'src' => 'http://127.0.0.1/' . $targetFile,
+                            'src' => 'http://www.gbc.com/' . $targetFile,
                             'size' => $post['size'],
                         ],
                 ];

@@ -19,7 +19,7 @@ $callback = function($menu){
 };
 $menu = Menu::widget([
     'options' => ['class' => 'layui-nav layui-nav-tree'],
-    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback),
+    'items' => MenuHelper::getAssignedMenu(Yii::$app->admin->id, null, $callback),
 ]);
 ?>
 <div class="layui-side layui-bg-black top-50 nav-top">
