@@ -10,12 +10,10 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use yii\web\Controller;
-use yii\web\UploadedFile;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use app\modules\admin\models\AdminUser;
 use app\modules\admin\models\ChangeForm;
-use app\modules\admin\models\UploadForm;
 use yii\web\Response;
 class AdminUserController extends Controller
 {
@@ -97,15 +95,30 @@ class AdminUserController extends Controller
         ]);
     }
 
+    /**
+     * 头像上传
+     */
     public function actionUpload()
     {
-        $this->enableCsrfValidation = false;
-        if (Yii::$app->request->isPost) {
-            $uploadFile = new uploadFile();
-            $post = $_FILES['UploadForm'];
-            $file = $uploadFile::getInstancesByName($post['name']);
-            return 'ok';
+        if (!empty($_FILES['Upload']) && $_FILES['Upload']['error'] === 0) {
+            $post = $_FILES['Upload'];
+            $filenames = explode(".", $post['name']);
+            $tempFile = $post['tmp_name'];
+            $path = 'uploads/' . time();
+            $targetFile = $path . "." . $filenames[count($filenames) - 1]; //图片完整路徑
+            // Validate the file type
+            $fileTypes = array('jpg', 'jpeg', 'png', 'gif'); // File extensions
+            $fileParts = pathinfo($post['name']);
+            if (in_array($fileParts['extension'], $fileTypes)) {
+                $error = '0';
+                move_uploaded_file($tempFile, $targetFile);
+                $json = ['code' => $error, 'data' => ['src' => 'http://127.0.0.1/' . $targetFile, 'size' => $post['size'],],];
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return $json;
+            }
         }
-        return 'NO';
+        $json = ['code' => '1',];
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $json;
     }
 }
