@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 04/05/2019 15:37:22
+ Date: 07/05/2019 13:13:33
 */
 
 SET NAMES utf8mb4;
@@ -41,13 +41,13 @@ CREATE TABLE `gbc_admin_user`  (
   UNIQUE INDEX `username`(`username`) USING BTREE,
   UNIQUE INDEX `email`(`email`) USING BTREE,
   UNIQUE INDEX `password_reset_token`(`password_reset_token`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of gbc_admin_user
 -- ----------------------------
-INSERT INTO `gbc_admin_user` VALUES (1, 'admin', '$2y$13$ofWJKYesGl94/37RtSGYhOlvsVWeugS3ocoTlmEbcxvu2DAzwTvyy', 'aaa', NULL, 'egquan@163.com', 10, 1556954847, 1556939992, 2130706433, '215151', 10, '春风', 'https://resources.alilinet.com/20180323/201803230920589741.png', NULL);
-INSERT INTO `gbc_admin_user` VALUES (4, 'admin888', '7fef6171469e80d32c0559f88b377245', NULL, NULL, 'egquan1@163.com', 10, 1926547, 1554875263, 2130706433, NULL, 10, NULL, NULL, NULL);
+INSERT INTO `gbc_admin_user` VALUES (1, 'admin', '$2y$13$hgvyGz6IWaXCJ7z5HpVKre5I3MlYbHMT6I1nCpC4iwmSeOwzqcKCa', 'aaa', NULL, 'egquan@163.com', 10, 1557189762, 1557204963, 2130706433, '215151', 10, '春风', 'http://127.0.0.1/uploads/1557189760.png', NULL);
+INSERT INTO `gbc_admin_user` VALUES (4, 'admin888', '$2y$13$hgvyGz6IWaXCJ7z5HpVKre5I3MlYbHMT6I1nCpC4iwmSeOwzqcKCa', NULL, NULL, 'egquan1@163.com', 10, 1557204902, 1557205624, 2130706433, NULL, 10, '小刚', 'http://127.0.0.1/uploads/1557204899.jpg', NULL);
 
 -- ----------------------------
 -- Table structure for gbc_auth_assignment
@@ -65,10 +65,8 @@ CREATE TABLE `gbc_auth_assignment`  (
 -- ----------------------------
 -- Records of gbc_auth_assignment
 -- ----------------------------
-INSERT INTO `gbc_auth_assignment` VALUES ('admin/default', '1', NULL);
-INSERT INTO `gbc_auth_assignment` VALUES ('admin/default/admin-sing', '1', 1555857472);
-INSERT INTO `gbc_auth_assignment` VALUES ('admin/default/index', '1', 1555857466);
-INSERT INTO `gbc_auth_assignment` VALUES ('管理员', '1', 1555683032);
+INSERT INTO `gbc_auth_assignment` VALUES ('创始人', '1', 1555683032);
+INSERT INTO `gbc_auth_assignment` VALUES ('管理员', '4', NULL);
 
 -- ----------------------------
 -- Table structure for gbc_auth_item
@@ -91,11 +89,16 @@ CREATE TABLE `gbc_auth_item`  (
 -- ----------------------------
 -- Records of gbc_auth_item
 -- ----------------------------
-INSERT INTO `gbc_auth_item` VALUES ('admin/', 2, 'admin模块', NULL, NULL, NULL, NULL);
-INSERT INTO `gbc_auth_item` VALUES ('admin/default', 2, '默认首页控制器', NULL, NULL, NULL, NULL);
-INSERT INTO `gbc_auth_item` VALUES ('admin/default/admin-sing', 2, '管理账号', NULL, NULL, 1555682876, 1555682876);
-INSERT INTO `gbc_auth_item` VALUES ('admin/default/index', 2, '首页', NULL, NULL, NULL, NULL);
-INSERT INTO `gbc_auth_item` VALUES ('管理员', 1, '超级管理员权限', NULL, NULL, 1555682876, 1555682876);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/', 2, '', NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/*', 2, '', NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/update-self', 2, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/default', 2, '', NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/default/*', 2, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/default/admin-sing', 2, '', NULL, NULL, 1555682876, 1555682876);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/default/index', 2, '', NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/index', 2, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_auth_item` VALUES ('创始人', 1, '网站创始人权限', NULL, NULL, 1555682876, 1555682876);
+INSERT INTO `gbc_auth_item` VALUES ('管理员', 1, '超级管理员权限', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for gbc_auth_item_child
@@ -113,10 +116,14 @@ CREATE TABLE `gbc_auth_item_child`  (
 -- ----------------------------
 -- Records of gbc_auth_item_child
 -- ----------------------------
-INSERT INTO `gbc_auth_item_child` VALUES ('管理员', 'admin/');
-INSERT INTO `gbc_auth_item_child` VALUES ('管理员', 'admin/default');
-INSERT INTO `gbc_auth_item_child` VALUES ('管理员', 'admin/default/admin-sing');
-INSERT INTO `gbc_auth_item_child` VALUES ('管理员', 'admin/default/index');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/*');
+INSERT INTO `gbc_auth_item_child` VALUES ('管理员', '/admin/admin-user/update-self');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default/*');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default/admin-sing');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default/index');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/menu/index');
 
 -- ----------------------------
 -- Table structure for gbc_auth_rule
@@ -144,12 +151,14 @@ CREATE TABLE `gbc_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `parent`(`parent`) USING BTREE,
   CONSTRAINT `gbc_menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `gbc_menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gbc_menu
 -- ----------------------------
-INSERT INTO `gbc_menu` VALUES (32, 'a', NULL, NULL, NULL, NULL);
+INSERT INTO `gbc_menu` VALUES (1, '权限管理', NULL, NULL, 2, 'fa fa-bullhorn');
+INSERT INTO `gbc_menu` VALUES (10, '菜单管理', 1, '/admin/menu/index', 10, '&#xe65e;');
+INSERT INTO `gbc_menu` VALUES (11, '更改资料', 1, '/admin/admin-user/update-self', 11, '&#xe65e;');
 
 -- ----------------------------
 -- Table structure for gbc_migration

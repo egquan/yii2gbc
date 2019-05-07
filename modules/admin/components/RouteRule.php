@@ -1,8 +1,7 @@
 <?php
 
-namespace rbac\components;
+namespace admin\components;
 
-use Yii;
 use yii\rbac\Rule;
 
 /**

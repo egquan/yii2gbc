@@ -2,11 +2,12 @@
 
 namespace app\modules\admin\controllers;
 
-use Yii;
+use yii\web\Controller;
+
 /**
  * Default controller for the `admin` module
  */
-class DefaultController extends CommonController
+class DefaultController extends Controller
 {
     /**
      * Renders the index view for the module
@@ -14,9 +15,6 @@ class DefaultController extends CommonController
      */
     public function actionIndex()
     {
-        if(Yii::$app->admin->isGuest){
-            return $this->redirect(['/admin/public/login']);
-        }
         $data = '';
         return $this->render('index',['data' => $data]);
     }

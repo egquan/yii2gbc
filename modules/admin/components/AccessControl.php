@@ -1,13 +1,12 @@
 <?php
 
-namespace rbac\components;
-
-use yii\web\ForbiddenHttpException;
-use yii\base\Module;
+namespace admin\components;
 use Yii;
 use yii\web\User;
+use yii\base\Module;
 use yii\di\Instance;
-use rbac\models\Log;
+use yii\web\ForbiddenHttpException;
+use admin\models\Log;
 /**
  * Access Control Filter (ACF) is a simple authorization method that is best used by applications that only need some simple access control. 
  * As its name indicates, ACF is an action filter that can be attached to a controller or a module as a behavior. 
@@ -33,7 +32,7 @@ class AccessControl extends \yii\base\ActionFilter
     /**
      * @var User User for check access.
      */
-    private $_user = 'user';
+    private $_user = 'admin';
     /**
      * @var array List of action that not need to check access.
      */
@@ -144,8 +143,8 @@ class AccessControl extends \yii\base\ActionFilter
 
         return true;
     }
-	public function afterAction($action, $result) {
-		Log::addLog($action);
-		return parent::afterAction($action, $result);
-	}
+    /*	public function afterAction($action, $result) {
+            Log::addLog($action);
+            return parent::afterAction($action, $result);
+        }*/
 }

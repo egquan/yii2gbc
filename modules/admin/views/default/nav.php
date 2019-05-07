@@ -17,13 +17,11 @@ $callback = function($menu){
     $items && $return['items'] = $items;
     return $return;
 };
+
 $menu = Menu::widget([
     'options' => ['class' => 'layui-nav layui-nav-tree'],
-    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback),
+    'items' => MenuHelper::getAssignedMenu(Yii::$app->admin->id, null, $callback),
 ]);
-?>
-<?php
-echo $menu;
 ?>
 
 <div class="layui-side layui-bg-black top-50 nav-top">

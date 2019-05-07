@@ -108,6 +108,12 @@ $config = [
             'database' => 0,
         ],
     ],
+    'as access' => [
+        'class' => 'admin\components\AccessControl',
+        'allowActions' => [
+            '*'
+        ]
+    ],
     'params' => $params,
 ];
 

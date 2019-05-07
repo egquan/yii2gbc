@@ -2,9 +2,8 @@
 
 namespace admin\models;
 
-use Yii;
-use admin\components\Configs;
 use yii\db\Query;
+use admin\components\Configs;
 
 /**
  * This is the model class for table "menu".
@@ -92,13 +91,13 @@ class Menu extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('rbac-admin', 'ID'),
-            'name' => Yii::t('rbac-admin', 'Name'),
-            'parent' => Yii::t('rbac-admin', 'Parent'),
-            'parent_name' => Yii::t('rbac-admin', 'Parent Name'),
-            'route' => Yii::t('rbac-admin', 'Route'),
-            'order' => Yii::t('rbac-admin', 'Order'),
-            'icon' => Yii::t('rbac-admin', 'Icon'),
+            'id' => 'ID',
+            'name' => '名称',
+            'Parent' => '父级',
+            'parent_name' => '父级名称',
+            'route' => '路由',
+            'order' => '排序',
+            'icon' => 'Icon',
         ];
     }
 
