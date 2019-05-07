@@ -18,9 +18,27 @@ use yii\web\ForbiddenHttpException;
 use app\modules\admin\models\AdminUser;
 use app\modules\admin\models\ChangeForm;
 use admin\models\searchs\User as UserSearch;
+use admin\models\form\Signup;
+use yii\filters\VerbFilter;
 use yii\web\Response;
+
 class AdminUserController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+//                    'logout' => ['post'],
+                    'active' => ['post'],
+                    'inactive' => ['post'],
+                    'Active' => ['post'],
+                ],
+            ],
+        ];
+    }
     /**
      * 首页
      * Displays index page.
