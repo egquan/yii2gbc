@@ -22,6 +22,10 @@ $menu = Menu::widget([
     'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback),
 ]);
 ?>
+<?php
+echo $menu;
+?>
+
 <div class="layui-side layui-bg-black top-50 nav-top">
     <div class="navBar layui-side-scroll"><?=$menu?></div>
 </div>

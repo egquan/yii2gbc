@@ -100,6 +100,7 @@ class AdminUserController extends Controller
      */
     public function actionUpload()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         if (!empty($_FILES['Upload']) && $_FILES['Upload']['error'] === 0) {
             $post = $_FILES['Upload'];
             $filenames = explode(".", $post['name']);
@@ -115,7 +116,6 @@ class AdminUserController extends Controller
             if (in_array($fileParts['extension'], $fileTypes)) {
                 $error = '0';
                 move_uploaded_file($tempFile, $targetFile);
-                Yii::$app->response->format = Response::FORMAT_JSON;
                 return Yii::$app->response->data = [
                     'code' => $error,
                     'data' =>
@@ -126,7 +126,6 @@ class AdminUserController extends Controller
                 ];
             }
         }
-        Yii::$app->response->format = Response::FORMAT_JSON;
         return Yii::$app->response->data = [
             'code' => '1',
         ];
