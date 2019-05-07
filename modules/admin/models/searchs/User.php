@@ -1,10 +1,10 @@
 <?php
 
-namespace rbac\models\searchs;
+namespace admin\models\searchs;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use rbac\models\User as UserModel;
+use app\modules\admin\models\AdminUser as UserModel;
 
 /**
  * User represents the model behind the search form about `rbac\models\User`.
@@ -17,7 +17,7 @@ class User extends UserModel
     public function rules()
     {
         return [
-            [['id', 'status', 'created_time', 'login_time'], 'integer'],
+            [['id', 'status', 'created_at', 'login_time'], 'integer'],
             [['username', 'auth_key', 'password', 'password_reset_token', 'email'], 'safe'],
         ];
     }
@@ -55,7 +55,7 @@ class User extends UserModel
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'created_at' => $this->created_time,
+            'created_at' => $this->updated_at,
             'updated_at' => $this->login_time,
         ]);
 
