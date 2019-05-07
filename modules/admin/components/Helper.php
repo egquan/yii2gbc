@@ -1,6 +1,6 @@
 <?php
 
-namespace rbac\components;
+namespace admin\components;
 
 use rbac\models\Route;
 use Yii;

@@ -3,7 +3,6 @@
 namespace admin\models;
 
 use yii\db\Query;
-use yii\db\ActiveRecord;
 use admin\components\Configs;
 
 /**
@@ -22,7 +21,7 @@ use admin\components\Configs;
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 1.0
  */
-class Menu extends ActiveRecord
+class Menu extends \yii\db\ActiveRecord
 {
     public $parent_name;
 
@@ -93,11 +92,11 @@ class Menu extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'parent' => 'Parent',
-            'parent_name' => 'Parent Name',
-            'route' => 'Route',
-            'order' => 'Order',
+            'name' => '名称',
+            'Parent' => '父级',
+            'parent_name' => '父级名称',
+            'route' => '路由',
+            'order' => '排序',
             'icon' => 'Icon',
         ];
     }

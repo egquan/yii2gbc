@@ -17,11 +17,13 @@ $callback = function($menu){
     $items && $return['items'] = $items;
     return $return;
 };
+
 $menu = Menu::widget([
     'options' => ['class' => 'layui-nav layui-nav-tree'],
     'items' => MenuHelper::getAssignedMenu(Yii::$app->admin->id, null, $callback),
 ]);
 ?>
+
 <div class="layui-side layui-bg-black top-50 nav-top">
     <div class="navBar layui-side-scroll"><?=$menu?></div>
 </div>

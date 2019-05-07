@@ -9,27 +9,78 @@ use yii;
 class Module extends \yii\base\Module
 {
     /**
+     * @inheritdoc
+     */
+    public $defaultRoute = 'default';
+    /**
+     * @var array Nav bar items.
+     */
+    public $navbar;
+    /**
+     * @var string Main layout using for module. Default to layout of parent module.
+     * Its used when `layout` set to 'left-menu', 'right-menu' or 'top-menu'.
+     */
+    public $mainLayout = '@admin/views/layouts/main.php';
+    private $_menus = [];
+
+    private $_coreItems = [
+        'user' => 'Users',
+        'assignment' => 'Assignments',
+        'role' => 'Roles',
+        'permission' => 'Permissions',
+        'route' => 'Routes',
+        'rule' => 'Rules',
+        'menu' => 'Menus',
+    ];
+    /**
+     * @var array
+     * @see [[items]]
+     */
+    private $_normalizeMenus;
+    /**
+     * @var string Default url for breadcrumb
+     */
+    public $defaultUrl;
+    /**
+     * @var string Default url label for breadcrumb
+     */
+    public $defaultUrlLabel;
+    /**
      * {@inheritdoc}
      */
     public $controllerNamespace = 'app\modules\admin\controllers';
     public $widgetsNamespace = 'app\modules\admin\widgets';
     public $layout = 'admin-main';
-    public $mainLayout = '@admin/views/layouts/main.php';
-    public $navbar;
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function init()
     {
         parent::init();
-        if ($this->navbar === null && Yii::$app instanceof yii\web\Application) {
-            $this->navbar = [
-                ['label' => '帮助', 'url' => ['default/index']],
-                ['label' => '首页', 'url' => Yii::$app->homeUrl],
+        if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
+            Yii::$app->i18n->translations['rbac-admin'] = [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'sourceLanguage' => 'zh-CN',
+                'basePath' => '@admin/messages',
             ];
-        }// custom initialization code goes here
+        }
+
+        //user did not define the Navbar?
+        if ($this->navbar === null && Yii::$app instanceof \yii\web\Application) {
+            $this->navbar = [
+                ['label' => Yii::t('rbac-admin', 'Help'), 'url' => ['default/index']],
+                ['label' => Yii::t('rbac-admin', 'Application'), 'url' => Yii::$app->homeUrl],
+            ];
+        }
+        if (class_exists('yii\jui\JuiAsset')) {
+            Yii::$container->set('rbac\AutocompleteAsset', 'yii\jui\JuiAsset');
+        }
     }
 
+    /**
+     * Get available menu.
+     * @return array
+     */
     public function getMenus()
     {
         if ($this->_normalizeMenus === null) {
@@ -79,5 +130,23 @@ class Module extends \yii\base\Module
     {
         $this->_menus = array_merge($this->_menus, $menus);
         $this->_normalizeMenus = null;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            /* @var $action \yii\base\Action */
+            $view = $action->controller->getView();
+
+            $view->params['breadcrumbs'][] = [
+                'label' => ($this->defaultUrlLabel ?: Yii::t('rbac-admin', 'Admin')),
+                'url' => ['/' . ($this->defaultUrl ?: $this->uniqueId)],
+            ];
+            return true;
+        }
+        return false;
     }
 }
