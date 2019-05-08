@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2019-05-08 06:51:54
+Date: 2019-05-09 06:49:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,12 +39,12 @@ CREATE TABLE `gbc_admin_user` (
   UNIQUE KEY `username` (`username`) USING BTREE,
   UNIQUE KEY `email` (`email`) USING BTREE,
   UNIQUE KEY `password_reset_token` (`password_reset_token`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of gbc_admin_user
 -- ----------------------------
-INSERT INTO `gbc_admin_user` VALUES ('1', 'admin', '$2y$13$hgvyGz6IWaXCJ7z5HpVKre5I3MlYbHMT6I1nCpC4iwmSeOwzqcKCa', 'aaa', null, 'egquan@163.com', '10', '1557261167', '1557267161', '2130706433', '215151', '10', '春风', 'http://www.gbc.com/uploads/1557261165.jpg', null);
+INSERT INTO `gbc_admin_user` VALUES ('1', 'admin', '$2y$13$hgvyGz6IWaXCJ7z5HpVKre5I3MlYbHMT6I1nCpC4iwmSeOwzqcKCa', 'aaa', null, 'egquan@163.com', '10', '1557342114', '1557353793', '2130706433', '215151', '10', '春风', 'http://www.gbc.com/uploads/1557261165.jpg', null);
 INSERT INTO `gbc_admin_user` VALUES ('2', 'admin888', '$2y$13$ToVOl1hnTUbHsKsJgZbe0OHbmqSNh8otbNm6HACTDmNv6gaQPZ5Y.', null, null, 'egquan1@163.com', '10', '1557257464', '1557205624', '2130706433', null, '10', '小刚', 'http://127.0.0.1/uploads/1557204899.jpg', null);
 
 -- ----------------------------
@@ -87,13 +87,97 @@ CREATE TABLE `gbc_auth_item` (
 -- ----------------------------
 -- Records of gbc_auth_item
 -- ----------------------------
-INSERT INTO `gbc_auth_item` VALUES ('', '0', null, null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/*', '2', null, null, null, '1557347841', '1557347841');
 INSERT INTO `gbc_auth_item` VALUES ('/admin/', '2', '', null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/*', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/*', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/active', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/change-password', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/delete', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/inactive', '2', null, null, null, '1557347829', '1557347829');
 INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/index', '2', null, null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/signup', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/update', '2', null, null, null, '1557347829', '1557347829');
 INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/update-self', '2', null, null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/upload', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/admin-user/view', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/assignment', '2', null, null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/assignment/*', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/assignment/assign', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/assignment/index', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/assignment/revoke', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/assignment/view', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/common/*', '2', null, null, null, '1557347839', '1557347839');
 INSERT INTO `gbc_auth_item` VALUES ('/admin/default', '2', '', null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/default/*', '2', null, null, null, '1557347839', '1557347839');
 INSERT INTO `gbc_auth_item` VALUES ('/admin/default/admin-sing', '2', '', null, null, '1555682876', '1555682876');
 INSERT INTO `gbc_auth_item` VALUES ('/admin/default/index', '2', '', null, null, null, null);
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/*', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/create', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/delete', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/delete-all', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/index', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/update', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/menu/view', '2', null, null, null, '1557347839', '1557347839');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/*', '2', null, null, null, '1557348925', '1557348925');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/assign', '2', null, null, null, '1557348925', '1557348925');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/create', '2', null, null, null, '1557348924', '1557348924');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/delete', '2', null, null, null, '1557348925', '1557348925');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/index', '2', null, null, null, '1557348924', '1557348924');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/remove', '2', null, null, null, '1557348925', '1557348925');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/update', '2', null, null, null, '1557348924', '1557348924');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/permission/view', '2', null, null, null, '1557348924', '1557348924');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/public/*', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/public/captcha', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/public/cs', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/public/login', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/public/logout', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/*', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/assign', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/create', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/delete', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/index', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/remove', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/update', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/role/view', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/route/*', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/route/assign', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/route/create', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/route/index', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/route/refresh', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/route/remove', '2', null, null, null, '1557347840', '1557347840');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/rule/*', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/rule/create', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/rule/delete', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/rule/index', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/rule/update', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/admin/rule/view', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/*', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/default/*', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/default/db-explain', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/default/download-mail', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/default/index', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/default/toolbar', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/default/view', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/user/*', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/user/reset-identity', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/debug/user/set-identity', '2', null, null, null, '1557347829', '1557347829');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/*', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/default/*', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/default/action', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/default/diff', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/default/index', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/default/preview', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/gii/default/view', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/*', '2', null, null, null, '1557347841', '1557347841');
+INSERT INTO `gbc_auth_item` VALUES ('/site/about', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/captcha', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/contact', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/error', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/index', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/login', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('/site/logout', '2', null, null, null, '1557347830', '1557347830');
+INSERT INTO `gbc_auth_item` VALUES ('namesd', '2', 'sdsd', null, '', null, null);
 INSERT INTO `gbc_auth_item` VALUES ('创始人', '1', '网站创始人权限', null, null, '1555682876', '1555682876');
 INSERT INTO `gbc_auth_item` VALUES ('管理员', '1', '超级管理员权限', null, null, null, null);
 
@@ -113,10 +197,10 @@ CREATE TABLE `gbc_auth_item_child` (
 -- ----------------------------
 -- Records of gbc_auth_item_child
 -- ----------------------------
-INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '');
 INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/');
 INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/admin-user/index');
 INSERT INTO `gbc_auth_item_child` VALUES ('管理员', '/admin/admin-user/update-self');
+INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/assignment');
 INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default');
 INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default/admin-sing');
 INSERT INTO `gbc_auth_item_child` VALUES ('创始人', '/admin/default/index');
@@ -151,14 +235,19 @@ CREATE TABLE `gbc_menu` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `parent` (`parent`) USING BTREE,
   CONSTRAINT `gbc_menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `gbc_menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of gbc_menu
 -- ----------------------------
 INSERT INTO `gbc_menu` VALUES ('1', '权限管理', null, null, '2', 'fa fa-bullhorn');
 INSERT INTO `gbc_menu` VALUES ('10', '菜单管理', '1', '/admin/menu/index', '10', '&#xe65e;');
-INSERT INTO `gbc_menu` VALUES ('11', '用户管理', '1', '/admin/admin-user/index', '11', '&#xe60d;');
+INSERT INTO `gbc_menu` VALUES ('12', '后台用户', '1', '/admin/admin-user/index', '11', '&#xe60d;');
+INSERT INTO `gbc_menu` VALUES ('13', '权限分配', '1', '/admin/assignment/index', '12', '&#xe609;');
+INSERT INTO `gbc_menu` VALUES ('14', '路由列表', '1', '/admin/route/index', '13', '&#xea3a;');
+INSERT INTO `gbc_menu` VALUES ('15', '权限列表', '1', '/admin/permission/index', '14', '&#xe60b;');
+INSERT INTO `gbc_menu` VALUES ('16', '角色列表', '1', '/admin/role/index', '15', '&#xe6bf;');
+INSERT INTO `gbc_menu` VALUES ('18', '规则列表', '1', '/admin/rule/index', '16', '规则列表');
 
 -- ----------------------------
 -- Table structure for gbc_migration
