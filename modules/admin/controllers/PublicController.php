@@ -14,6 +14,18 @@ use admin\models\AdminUser;
 use admin\models\LoginForm;
 class PublicController extends Controller
 {
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
     public function actions()
     {
         return [

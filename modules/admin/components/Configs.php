@@ -30,7 +30,7 @@ use yii\rbac\ManagerInterface;
  * or use [[\Yii::$container]]
  *
  * ```
- * Yii::$container->set('rbac\components\Configs',[
+ * Yii::$container->set('admin\components\Configs',[
  *     'db' => 'customDb',
  *     'menuTable' => 'admin_menu',
  * ]);
@@ -41,7 +41,7 @@ use yii\rbac\ManagerInterface;
  */
 class Configs extends \yii\base\BaseObject
 {
-    const CACHE_TAG = 'mdm.admin';
+    const CACHE_TAG = 'gbc.admin';
 
     /**
      * @var ManagerInterface .
@@ -140,7 +140,7 @@ class Configs extends \yii\base\BaseObject
     public static function instance()
     {
         if (self::$_instance === null) {
-            $type = ArrayHelper::getValue(Yii::$app->params, 'mdm.admin.configs', []);
+            $type = ArrayHelper::getValue(Yii::$app->params, 'gbc.admin.configs', []);
             if (is_array($type) && !isset($type['class'])) {
                 $type['class'] = static::className();
             }

@@ -19,7 +19,6 @@ use admin\components\Configs;
  */
 class RuleController extends Controller
 {
-
     /**
      * @inheritdoc
      */

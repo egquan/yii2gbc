@@ -110,31 +110,33 @@ class MenuController extends Controller
      */
     public function actionDelete($id)
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $model = $this->findModel($id);
         if ($model->delete()) {
             Helper::invalidate();
-            return json_encode(['code' => 200, "msg" => "删除成功"]);
+            return Yii::$app->response->data = ['code' => 200, "msg" => "删除成功"];
         } else {
             $errors = $model->firstErrors;
-            return json_encode(['code' => 400, "msg" => reset($errors)]);
+            return Yii::$app->response->data = ['code' => 400, "msg" => reset($errors)];
         }
     }
 
     public function actionDeleteAll()
     {
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $data = Yii::$app->request->post();
         if ($data) {
             $model = new Menu;
             $count = $model->deleteAll(["in", "id", $data['keys']]);
             if ($count > 0) {
                 Helper::invalidate();
-                return json_encode(['code' => 200, "msg" => "删除成功"]);
+                return Yii::$app->response->data = ['code' => 200, "msg" => "删除成功"];
             } else {
                 $errors = $model->firstErrors;
-                return json_encode(['code' => 400, "msg" => reset($errors)]);
+                return Yii::$app->response->data = ['code' => 400, "msg" => reset($errors)];
             }
         } else {
-            return json_encode(['code' => 400, "msg" => "请选择数据"]);
+            return jYii::$app->response->data = ['code' => 400, "msg" => "请选择数据"];
         }
     }
 

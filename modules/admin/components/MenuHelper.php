@@ -11,7 +11,7 @@ use admin\models\Menu;
  * Usage
  * 
  * ```
- * use rbac\components\MenuHelper;
+ * use admin\components\MenuHelper;
  * use yii\bootstrap\Nav;
  *
  * echo Nav::widget([

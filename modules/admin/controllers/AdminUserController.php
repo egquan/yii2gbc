@@ -9,8 +9,6 @@ namespace admin\controllers;
  */
 
 use Yii;
-use yii\di\Instance;
-use yii\filters\PageCache;
 use yii\helpers\Json;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -25,6 +23,7 @@ use yii\web\Response;
 
 class AdminUserController extends Controller
 {
+    private $_oldMailPath;
     public function behaviors()
     {
         return [
@@ -32,13 +31,36 @@ class AdminUserController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
-//                    'logout' => ['post'],
                     'active' => ['post'],
                     'inactive' => ['post'],
                     'Active' => ['post'],
                 ],
             ],
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        if (parent::beforeAction($action)) {
+            if (Yii::$app->has('mailer') && ($mailer = Yii::$app->getMailer()) instanceof BaseMailer) {
+                /* @var $mailer BaseMailer */
+                $this->_oldMailPath = $mailer->getViewPath();
+                $mailer->setViewPath('@mdm/admin/mail');
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterAction($action, $result)
+    {
+        if ($this->_oldMailPath !== null) {
+            Yii::$app->getMailer()->setViewPath($this->_oldMailPath);
+        }
+        return parent::afterAction($action, $result);
     }
     /**
      * 首页
