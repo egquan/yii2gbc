@@ -2,13 +2,13 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use backend\assets\LayuiAsset;
+use app\assets\GbcAdminAsset;
 
 /* @var $this  yii\web\View */
-/* @var $model rbac\models\BizRule */
+/* @var $model admin\models\BizRule */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel rbac\models\searchs\BizRule */
-LayuiAsset::register($this); 
+/* @var $searchModel admin\models\searchs\BizRule */
+GbcAdminAsset::register($this);
 $this->registerJs($this->render('js/index.js'));
 ?>
 <blockquote class="layui-elem-quote" style="font-size: 14px;">

@@ -1,6 +1,8 @@
 <?php
-use backend\assets\LayuiAsset;
-LayuiAsset::register($this);
+
+use app\assets\GbcAdminAsset;
+
+GbcAdminAsset::register($this);
 ?>
 <div class="auth-item-update">
     <?=$this->render('_form', [

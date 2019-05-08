@@ -2,9 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use backend\assets\LayuiAsset;
+use backend\assets\GbcAdminAsset;
 
-LayuiAsset::register($this);
+GbcAdminAsset::register($this);
 ?>
 <div class="auth-item-view">
     <?php

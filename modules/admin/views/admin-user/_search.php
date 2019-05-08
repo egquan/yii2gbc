@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 use app\assets\AppAsset;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\searchs\User */
+/* @var $model admin\models\searchs\User */
 /* @var $form yii\widgets\ActiveForm */
 AppAsset::register($this);
 ?>

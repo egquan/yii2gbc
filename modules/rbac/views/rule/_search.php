@@ -2,8 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use backend\assets\AppAsset;
-use common\models\ArticleGroup;
+use app\assets\AppAsset;
 /* @var $this yii\web\View */
 /* @var $model common\models\searchs\ArticleSearch */
 /* @var $form yii\widgets\ActiveForm */

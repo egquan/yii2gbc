@@ -1,5 +1,5 @@
 <?php
-use yii\helpers\Url;
+
 use app\assets\GbcAdminAsset;
 
 GbcAdminAsset::addScript($this, 'plugins/echarts/echarts.min.js');

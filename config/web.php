@@ -13,7 +13,6 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@admin' => '@app/modules/admin',
-        '@ceshi' => '@app/modules/ceshi',
     ],
     //模块设计
     'modules' => [
@@ -57,7 +56,7 @@ $config = [
                 $user = $event->identity; //这里的就是User Model的实例
                 $user->login_time = time();
                 $user->login_ip = ip2long(Yii::$app->request->userIP);
-                $user->save();
+                $user->save(false);
             },
         ],
         'authManager'=>[

@@ -6,7 +6,7 @@ use yii\grid\GridView;
 use app\assets\GbcAdminAsset;
 
 /* @var $this yii\web\View */
-/* @var $searchModel rbac\models\searchs\User */
+/* @var $searchModel admin\models\searchs\User */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 GbcAdminAsset::register($this);
