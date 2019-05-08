@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace admin\controllers;
 
 use Yii;
-use app\modules\admin\models\AuthAssignment;
+use admin\models\AuthAssignment;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

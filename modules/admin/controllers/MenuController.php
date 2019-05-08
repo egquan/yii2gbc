@@ -1,15 +1,14 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace admin\controllers;
 
 use Yii;
-use admin\models\Menu;
-use admin\models\searchs\Menu as MenuSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use admin\components\Helper;
-use admin\components\Configs;
+use admin\models\Menu;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+use admin\models\searchs\Menu as MenuSearch;
 
 /**
  * MenuController implements the CRUD actions for Menu model.

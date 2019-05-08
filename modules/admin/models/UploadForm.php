@@ -6,7 +6,7 @@
  * Time: 14:11
  */
 
-namespace app\modules\admin\models;
+namespace admin\models;
 
 use yii\base\Model;
 use yii\web\UploadedFile;

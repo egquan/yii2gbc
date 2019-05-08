@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\admin\controllers;
+namespace admin\controllers;
 /**
  * Created by PhpStorm.
  * User: xiaogang
@@ -13,13 +13,14 @@ use yii\di\Instance;
 use yii\filters\PageCache;
 use yii\helpers\Json;
 use yii\web\Controller;
+use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
-use app\modules\admin\models\AdminUser;
-use app\modules\admin\models\ChangeForm;
+use admin\models\AdminUser;
+use admin\models\ChangeForm;
 use admin\models\searchs\User as UserSearch;
 use admin\models\form\Signup;
-use yii\filters\VerbFilter;
+
 use yii\web\Response;
 
 class AdminUserController extends Controller

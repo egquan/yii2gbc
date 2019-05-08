@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\admin;
+namespace admin;
 
 use yii;
 /**
@@ -48,8 +48,10 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\admin\controllers';
-    public $widgetsNamespace = 'app\modules\admin\widgets';
+    public $controllerNamespace = 'admin\controllers';
+    /**
+     * 默认布局文件
+     */
     public $layout = 'admin-main';
     /**
      * @inheritdoc

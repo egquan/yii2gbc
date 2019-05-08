@@ -2,7 +2,7 @@
 
 namespace admin\components;
 
-use rbac\models\Route;
+use admin\models\Route;
 use Yii;
 use yii\caching\TagDependency;
 use yii\helpers\ArrayHelper;

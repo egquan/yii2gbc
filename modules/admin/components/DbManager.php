@@ -1,6 +1,6 @@
 <?php
 
-namespace rbac\components;
+namespace admin\components;
 
 /**
  * DbManager represents an authorization manager that stores authorization information in database.

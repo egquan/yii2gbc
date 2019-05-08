@@ -1,12 +1,12 @@
 <?php
 
-namespace rbac\models\searchs;
+namespace admin\models\searchs;
 
 use Yii;
+use yii\rbac\Item;
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
-use rbac\components\Configs;
-use yii\rbac\Item;
+use admin\components\Configs;
 
 /**
  * AuthItemSearch represents the model behind the search form about AuthItem.

@@ -6,12 +6,12 @@
  * Time: 0:51
  */
 
-namespace app\modules\admin\controllers;
+namespace admin\controllers;
 
 use Yii;
 use yii\web\Controller;
-use app\modules\admin\models\AdminUser;
-use app\modules\admin\models\LoginForm;
+use admin\models\AdminUser;
+use admin\models\LoginForm;
 class PublicController extends Controller
 {
     public function actions()
@@ -58,13 +58,6 @@ class PublicController extends Controller
         return $this->redirect(['public/login']);
     }
 
-    public function actionAdmindata(){
-        //$this->layout = false;
-        $model = new AdminUser();
-        return $this->render('admindata',[
-            'model'=>$model,
-            ]);
-    }
     public function actionCs(){
         $cache = Yii::$app->cache;
         $key = '3bcd';

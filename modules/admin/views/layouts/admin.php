@@ -6,7 +6,7 @@
  * Time: 22:14
  */
 use yii\helpers\Html;
-use \yii\helpers\Url;
+use yii\helpers\Url;
 use app\assets\AdminAsset;
 $this->title = 'GBC 音乐管理系统后台-首页';
 AdminAsset::register($this);

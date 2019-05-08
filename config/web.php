@@ -13,15 +13,13 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
         '@admin' => '@app/modules/admin',
+        '@ceshi' => '@app/modules/ceshi',
     ],
     //模块设计
     'modules' => [
         //Admin模块
         'admin' => [
-            'class' => 'app\modules\admin\Module',
-        ],
-        "rbac" => [
-            'class' => 'rbac\Module',
+            'class' => 'admin\Module',
         ],
     ],
     //主体
@@ -49,7 +47,7 @@ $config = [
         //后台登陆
         'admin' =>[
             'class'=>'yii\web\User',
-            'identityClass' => 'app\modules\admin\models\AdminUser',
+            'identityClass' => 'admin\models\AdminUser',
             'enableAutoLogin' => true,
             'loginUrl' =>['/admin/public/login'],
             'identityCookie' => ['name' => '_admin_identity', 'httpOnly' => true],

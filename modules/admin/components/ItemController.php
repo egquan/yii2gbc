@@ -1,10 +1,10 @@
 <?php
 
-namespace rbac\components;
+namespace admin\components;
 
 use Yii;
-use rbac\models\AuthItem;
-use rbac\models\searchs\AuthItem as AuthItemSearch;
+use admin\models\AuthItem;
+use admin\models\searchs\AuthItem as AuthItemSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\base\NotSupportedException;

@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\admin\models\AuthAssignment */
+/* @var $model admin\models\AuthAssignment */
 
 $this->title = 'Create Auth Assignment';
 $this->params['breadcrumbs'][] = ['label' => 'Auth Assignments', 'url' => ['index']];

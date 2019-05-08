@@ -1,13 +1,13 @@
 <?php
 
-namespace rbac\models\searchs;
+namespace admin\models\searchs;
 
 use Yii;
 use yii\base\Model;
+use admin\components\Configs;
+use admin\components\RouteRule;
 use yii\data\ArrayDataProvider;
-use rbac\models\BizRule as MBizRule;
-use rbac\components\RouteRule;
-use rbac\components\Configs;
+use admin\models\BizRule as MBizRule;
 
 /**
  * Description of BizRule

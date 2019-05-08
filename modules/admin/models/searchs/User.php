@@ -4,7 +4,7 @@ namespace admin\models\searchs;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\admin\models\AdminUser as UserModel;
+use admin\models\AdminUser as UserModel;
 
 /**
  * User represents the model behind the search form about `rbac\models\User`.

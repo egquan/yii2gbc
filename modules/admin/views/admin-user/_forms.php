@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use system\models\UserRank;
+
+//use system\models\UserRank;
 
 $this->registerJs($this->render('js/upload.js'));
 ?>
