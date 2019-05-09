@@ -41,7 +41,7 @@ use yii\rbac\ManagerInterface;
  */
 class Configs extends \yii\base\BaseObject
 {
-    const CACHE_TAG = 'gbc.admin';
+    const CACHE_TAG = 'mdm.admin';
 
     /**
      * @var ManagerInterface .

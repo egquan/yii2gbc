@@ -10,7 +10,7 @@ namespace admin\controllers;
 
 use Yii;
 use yii\web\Controller;
-use admin\models\AdminUser;
+use yii\filters\VerbFilter;
 use admin\models\LoginForm;
 class PublicController extends Controller
 {
