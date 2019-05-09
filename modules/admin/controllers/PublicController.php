@@ -71,15 +71,15 @@ class PublicController extends Controller
     }
 
     public function actionCs(){
-        $cache = Yii::$app->cache;
-        $key = '3bcd';
-        $data = $cache->get($key);
-        if ($data === false) {
-            // $data 在缓存中没有找到，则重新计算它的值
-            // 将 $data 存放到缓存供下次使用
-            $data = 'aaa';
-            $cache->set($key, $data);
-        }
-        echo $data;
+        $mail = Yii::$app->mailer->compose();
+        $mail->setTo('egquan@163.com');
+        $mail->setSubject("邮件测试");
+//$mail->setTextBody('zheshisha ');   //发布纯文字文本
+        $mail->setHtmlBody("<br>问我我我我我");    //发布可以带html标签的文本
+        if ($mail->send())
+            echo "success";
+        else
+            echo "failse";
+        die();
     }
 }
