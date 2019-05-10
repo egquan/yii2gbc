@@ -70,7 +70,20 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.163.com',  //每种邮箱的host配置不一样
+                'username' => 'egquan@163.com',
+                'password' => 'xiaochun0543',
+                'port' => '25',
+                'encryption' => 'tls',
+
+            ],
+            'messageConfig' => [
+                'charset' => 'UTF-8',
+                'from' => ['egquan@163.com' => 'Gbc 音乐管理系统']
+            ],
         ],
         //日志文件
         'log' => [
@@ -94,7 +107,7 @@ $config = [
         //redis缓存
         'redis' => [
             'class' => 'yii\redis\Connection',
-            'hostname' => '192.168.1.110',
+            'hostname' => '127.0.0.1',
             'port' => 6379,
             'database' => 0,
         ],
@@ -102,6 +115,7 @@ $config = [
     'as access' => [
         'class' => 'admin\components\AccessControl',
         'allowActions' => [
+            '*'
         ]
     ],
     'params' => $params,

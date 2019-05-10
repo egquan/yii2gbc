@@ -26,7 +26,9 @@ GbcAdminAsset::register($this);
             'updated_at:datetime',
             [
                 'attribute' => 'login_ip',
-                'value' => long2ip($model->login_ip),
+                'value' => function ($model) {
+                    return long2ip($model->login_ip);
+                },
             ]
         ],
         'template' => '<tr><th width="90px;">{label}</th><td>{value}</td></tr>',

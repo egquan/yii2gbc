@@ -18,17 +18,16 @@ use yii\web\IdentityInterface;
  * @property string $nickname 昵称
  * @property string $head_pic 头像
  * @property int $status 账号状态
- * @property int $created_time 帐号创建时间
  * @property int $updated_at 资料更新时间
  * @property int $login_time 账号修改时间
  * @property int $login_ip 最后登陆IP
  * @property string $verification_token
+ * @property  int $created_at 创建时间
  * @property int $role
  */
 class AdminUser extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 9;
+    const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 10;
     /**
      * {@inheritdoc}
@@ -44,9 +43,9 @@ class AdminUser extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-            [['email', 'nickname', 'head_pic'], 'required', 'message' => '{attribute}不能为空'],
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE]],
+            [['email', 'nickname'], 'required', 'message' => '{attribute}不能为空'],
             ['email', 'email', 'message' => '邮箱格式不正确'],
             ['email', 'unique', 'message' => '邮箱格已被占用'],
             ['nickname', 'string', 'max' => 10, 'message' => '{attribute}不能大于10个字符'],
@@ -68,7 +67,7 @@ class AdminUser extends ActiveRecord implements IdentityInterface
             'password_reset_token' => 'Password Reset Token',
             'email' => '邮箱',
             'status' => '账号状态',
-            'created_time' => 'Created Time',
+            'created_at' => '创建时间',
             'login_time' => '登录时间',
             'login_ip' => '登陆IP',
             'verification_token' => 'Verification Token',

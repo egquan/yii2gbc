@@ -59,10 +59,11 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
+        Yii::$app->errorHandler->errorAction = 'admin/public/error';
         if (!isset(Yii::$app->i18n->translations['rbac-admin'])) {
             Yii::$app->i18n->translations['rbac-admin'] = [
                 'class' => 'yii\i18n\PhpMessageSource',
-                'sourceLanguage' => 'zh-CN',
+                'sourceLanguage' => 'en',
                 'basePath' => '@admin/messages',
             ];
         }
@@ -70,8 +71,8 @@ class Module extends \yii\base\Module
         //user did not define the Navbar?
         if ($this->navbar === null && Yii::$app instanceof \yii\web\Application) {
             $this->navbar = [
-                ['label' => Yii::t('rbac-admin', 'Help'), 'url' => ['default/index']],
-                ['label' => Yii::t('rbac-admin', 'Application'), 'url' => Yii::$app->homeUrl],
+                ['label' => '帮助', 'url' => ['default/index']],
+                ['label' => '应用', 'url' => Yii::$app->homeUrl],
             ];
         }
         if (class_exists('yii\jui\JuiAsset')) {

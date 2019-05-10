@@ -2,6 +2,7 @@
 
 namespace admin\models\form;
 
+use Yii;
 use admin\models\AdminUser;
 use yii\base\Model;
 
@@ -23,25 +24,25 @@ class Signup extends Model
     {
         return [
             ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['nickname', 'string', 'max' => 32],
-            ['username', 'unique', 'targetClass' => 'admin\models\AdminUser', 'message' => 'This username has already been taken.'],
+            ['username', 'required', 'message' => '邮箱不能为空！'],
+            ['nickname', 'string', 'max' => 32, 'message' => '昵称不能大于32个字'],
+            ['username', 'unique', 'targetClass' => 'admin\models\AdminUser', 'message' => '用户名已存在！'],
             [['username', 'head_pic'], 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => 'admin\models\AdminUser', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => 'admin\models\AdminUser', 'message' => '邮箱已存在！'],
 
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 8, 'message' => '密码最少8个字符'],
         ];
     }
 
     /**
      * Signs user up.
      *
-     * @return User|null the saved model or null if saving fails
+     * @return AdminUser|null the saved model or null if saving fails
      */
     public function signup()
     {
@@ -51,6 +52,8 @@ class Signup extends Model
             $user->nickname = $this->nickname;
             $user->head_pic = $this->head_pic;
             $user->email = $this->email;
+            $user->created_at = time();
+            $user->login_ip = ip2long(Yii::$app->request->userIP);
             $user->setPassword($this->password);
             $user->generateAuthKey();
             if ($user->save()) {

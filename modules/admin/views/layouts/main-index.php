@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
-    <html>
+    <html lang="<?= Yii::$app->language ?>">
     <head>
         <meta charset="utf-8">
         <title>后台管理</title>

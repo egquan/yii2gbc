@@ -10,7 +10,7 @@
  Target Server Type    : MySQL
  Target Server Version : 80015
  File Encoding         : 65001
-
+CREATE VIEW view_name AS ;
  Date: 09/05/2019 11:43:23
 */
 

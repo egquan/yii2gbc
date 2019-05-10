@@ -82,10 +82,30 @@ $this->registerJs($this->render('js/index.js'));
                 ],
             ],
             [
+                'attribute' => 'login_time',
+                'contentOptions' => ['class' => 'text-center'],
+                'value' => function ($model) {
+                    return date("Y-m-d H:i:s", $model->login_time);
+                },
+                'headerOptions' => [
+                    'style' => 'text-align: center;'
+                ],
+            ],
+            [
+                'attribute' => 'login_ip',
+                'contentOptions' => ['class' => 'text-center'],
+                'value' => function ($model) {
+                    return long2ip($model->login_ip);
+                },
+                'headerOptions' => [
+                    'style' => 'text-align: center;'
+                ],
+            ],
+            [
                 'attribute' => 'status',
                 'format' => 'html',
                 'value' => function ($model) {
-                    return $model->status == 9 ? '<font color="red">禁用</font>' : '<font color="green">启用</font>';
+                    return $model->status == 0 ? '<font color="red">禁用</font>' : '<font color="green">启用</font>';
                 },
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'headerOptions' => [
@@ -110,7 +130,7 @@ $this->registerJs($this->render('js/index.js'));
                         return Html::a('修改', Url::to(['update', 'id' => $model->id]), ['class' => "layui-btn layui-btn-normal layui-btn-xs layui-default-update"]);
                     },
                     'activate' => function ($url, $model, $key) {
-                        if ($model->status == 9) {
+                        if ($model->status == 0) {
                             return Html::a('启用', Url::to(['active', 'id' => $model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-normal layui-default-active"]);
                         } else {
                             return Html::a('禁用', Url::to(['inactive', 'id' => $model->id]), ['class' => "layui-btn layui-btn-xs layui-btn-warm layui-default-inactive"]);

@@ -51,6 +51,7 @@ class Signup extends Model
 			$user->nickname = $this->nickname;
 			$user->head_pic = $this->head_pic;
             $user->email = $this->email;
+            $user->created_at = time();
             $user->setPassword($this->password);
             $user->generateAuthKey();
             if ($user->save()) {

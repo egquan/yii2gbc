@@ -186,7 +186,6 @@ class AdminUserController extends Controller
                 ]);
             }
         }
-
         return $this->render('signup', [
             'model' => $model,
         ]);
