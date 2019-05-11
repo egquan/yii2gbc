@@ -9,6 +9,7 @@ use yii\web\IdentityInterface;
 /**
  * This is the model class for table "{{%admin_user}}".
  *
+ * AdminUser model
  * @property int $id 管理员ID
  * @property string $username 管理员账号
  * @property string $auth_key

@@ -18,9 +18,11 @@ use admin\models\AdminUser;
 use admin\models\ChangeForm;
 use admin\models\searchs\User as UserSearch;
 use admin\models\form\Signup;
-
 use yii\web\Response;
 
+/**
+ * AdminUser Controller
+ */
 class AdminUserController extends Controller
 {
     private $_oldMailPath;
