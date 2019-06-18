@@ -16,8 +16,8 @@ use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use admin\models\AdminUser;
 use admin\models\ChangeForm;
-use admin\models\searchs\User as UserSearch;
-use admin\models\form\Signup;
+use admin\models\searchs\AdminUser as AdminUserSearch;
+use admin\models\form\AdminSignup;
 use yii\web\Response;
 
 /**
@@ -71,7 +71,7 @@ class AdminUserController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
+        $searchModel = new AdminUserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -157,7 +157,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * 启用用户
+     * 删除用户
      * Delete action.
      * @param integer $id
      * @return Json|array
@@ -180,7 +180,7 @@ class AdminUserController extends Controller
      */
     public function actionSignup()
     {
-        $model = new Signup();
+        $model = new AdminSignup();
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
                 return $this->render('view', [

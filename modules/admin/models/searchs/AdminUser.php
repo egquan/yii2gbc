@@ -4,12 +4,12 @@ namespace admin\models\searchs;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\User as UserModel;
+use admin\models\AdminUser as AdminUserModel;
 
 /**
  * User represents the model behind the search form about `rbac\models\User`.
  */
-class User extends UserModel
+class AdminUser extends AdminUserModel
 {
     /**
      * @inheritdoc
@@ -17,8 +17,8 @@ class User extends UserModel
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email'], 'safe'],
+            [['id', 'status', 'created_at', 'login_time'], 'integer'],
+            [['username', 'auth_key', 'password', 'password_reset_token', 'email'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class User extends UserModel
      */
     public function search($params)
     {
-        $query = UserModel::find();
+        $query = AdminUserModel::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,13 +55,13 @@ class User extends UserModel
         $query->andFilterWhere([
             'id' => $this->id,
             'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'created_at' => $this->updated_at,
+            'updated_at' => $this->login_time,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_hash', $this->password])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email]);
 

@@ -41,7 +41,14 @@ $config = [
             'enableAutoLogin' => true,
             'loginUrl' =>['/site/login'],
             'identityCookie' => ['name' => '_user_identity', 'httpOnly' => true],
-            'idParam' => '_user'
+            'idParam' => '_user',
+            //触发登陆事件
+            'on beforeLogin' => function ($event) {
+                $user = $event->identity; //这里的就是User Model的实例
+                $user->updated_at = time();
+                $user->login_ip = ip2long(Yii::$app->request->userIP);
+                $user->save(false);
+            },
         ],
         //后台登陆
         'admin' =>[

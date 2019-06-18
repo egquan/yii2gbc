@@ -7,9 +7,9 @@ use admin\models\AdminUser;
 use yii\base\Model;
 
 /**
- * Signup form
+ * AdminSignup form
  */
-class Signup extends Model
+class AdminSignup extends Model
 {
     public $username;
     public $nickname;
@@ -24,9 +24,9 @@ class Signup extends Model
     {
         return [
             ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required', 'message' => '邮箱不能为空！'],
-            ['nickname', 'string', 'max' => 32, 'message' => '昵称不能大于32个字'],
-            ['username', 'unique', 'targetClass' => 'admin\models\AdminUser', 'message' => '用户名已存在！'],
+            ['username', 'required', 'message' => '用户账号不能为空！'],
+            ['nickname', 'string', 'max' => 10, 'message' => '昵称不能大于10个字'],
+            ['username', 'unique', 'targetClass' => 'admin\models\AdminUser', 'message' => '用户账号已存在！'],
             [['username', 'head_pic'], 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
@@ -67,8 +67,8 @@ class Signup extends Model
     public function attributeLabels()
     {
         return [
-            'nickname' => '用户昵称',
-            'username' => '用户名',
+            'nickname' => '用户名',
+            'username' => '用户账号',
             'head_pic' => '用户头像',
             'email' => '电子邮箱',
             'password' => '用户密码',
