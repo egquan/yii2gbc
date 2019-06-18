@@ -47,4 +47,8 @@ PHP 版本 7.3.4 Mysql版本8.0 apache2.4
 
 截图
 ------------
-![静态代码检查首页](https://github.com/egquan/yii2gbc/blob/master/README/1.PNG)
+登录页面
+![登陆页](https://github.com/egquan/yii2gbc/blob/master/README/1.PNG)
+
+密码错误三次自动开启验证码
+![错误三次开启验证码](https://github.com/egquan/yii2gbc/blob/master/README/2.PNG)
