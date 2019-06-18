@@ -1,6 +1,10 @@
 <p align="center">
     <a href="https://github.com/egquan/yii2gbc" target="_blank">
-        <img src="" height="100px">
+        Yii2 GBC 项目地址
+    </a>
+    <br>
+    <a href="http://www.chunblog.com/" target="_blank">
+    我的个人博客
     </a>
     <h1 align="center">Yii 2 Gbc 音乐管理系统</h1>
     <br>
@@ -12,6 +16,7 @@
 1.使用git clone 命令克隆项目
 2.导入最新更新的SQL文件
 3.更改config/db.php 数据库配置文件
+4.后台账户admin  密码admin888
 ```php
 return [
     'class' => 'yii\db\Connection',
@@ -52,3 +57,24 @@ PHP 版本 7.3.4 Mysql版本8.0 apache2.4
 
 密码错误三次自动开启验证码
 ![错误三次开启验证码](https://github.com/egquan/yii2gbc/blob/master/README/2.PNG)
+
+后台菜单管理
+![后台菜单管理](https://github.com/egquan/yii2gbc/blob/master/README/3.PNG)
+
+后台用户管理
+![后台用户管理](https://github.com/egquan/yii2gbc/blob/master/README/4.PNG)
+
+后台用户权限分配
+![后台用户权限分配](https://github.com/egquan/yii2gbc/blob/master/README/4.PNG)
+
+路由列表
+![路由列表](https://github.com/egquan/yii2gbc/blob/master/README/5.PNG)
+
+权限列表
+![权限列表](https://github.com/egquan/yii2gbc/blob/master/README/6.PNG)
+
+角色列表
+![角色列表](https://github.com/egquan/yii2gbc/blob/master/README/7.PNG)
+
+前台用户管理
+![前台用户管理](https://github.com/egquan/yii2gbc/blob/master/README/8.PNG)
