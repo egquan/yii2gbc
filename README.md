@@ -47,4 +47,4 @@ PHP 版本 7.3.4 Mysql版本8.0 apache2.4
 
 截图
 ------------
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)]
+![静态代码检查首页](https://github.com/egquan/yii2gbc/blob/master/README/1.PNG)
