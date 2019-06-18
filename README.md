@@ -65,16 +65,16 @@ PHP 版本 7.3.4 Mysql版本8.0 apache2.4
 ![后台用户管理](https://github.com/egquan/yii2gbc/blob/master/README/4.PNG)
 
 后台用户权限分配
-![后台用户权限分配](https://github.com/egquan/yii2gbc/blob/master/README/4.PNG)
+![后台用户权限分配](https://github.com/egquan/yii2gbc/blob/master/README/5.PNG)
 
 路由列表
-![路由列表](https://github.com/egquan/yii2gbc/blob/master/README/5.PNG)
+![路由列表](https://github.com/egquan/yii2gbc/blob/master/README/6.PNG)
 
 权限列表
-![权限列表](https://github.com/egquan/yii2gbc/blob/master/README/6.PNG)
+![权限列表](https://github.com/egquan/yii2gbc/blob/master/README/7.PNG)
 
 角色列表
-![角色列表](https://github.com/egquan/yii2gbc/blob/master/README/7.PNG)
+![角色列表](https://github.com/egquan/yii2gbc/blob/master/README/8.PNG)
 
 前台用户管理
-![前台用户管理](https://github.com/egquan/yii2gbc/blob/master/README/8.PNG)
+![前台用户管理](https://github.com/egquan/yii2gbc/blob/master/README/9.PNG)
